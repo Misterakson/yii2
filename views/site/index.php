@@ -9,7 +9,7 @@ $this->title = 'My Yii Application';
     <div class="jumbotron">
         <h1>Git Start!</h1>
 
-        <p class="lead">You have successfully created your Your git funct.</p>
+        <p class="lead">You have successfully created your! Git 2.</p>
 
         <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
     </div>
