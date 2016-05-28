@@ -2,7 +2,6 @@
 
 namespace app\controllers;
 
-use app\models\UserForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -10,6 +9,8 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\EntryForm;
+use app\models\UserForm;
+
 
 class SiteController extends Controller
 {
@@ -89,12 +90,6 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionHello()
-    {
-        $test = 'John';
-        return $this->render('hello', array('name'=>$test));
-    }
-
 
     public function actionAbout()
     {
@@ -122,17 +117,27 @@ class SiteController extends Controller
         }
     }
 
-    public function actionUser()
+   public function actionUser()
+   {
+       $model = new UserForm();
+
+       if($model->load(Yii::$app->request->post()) && $model->validate())
+       {
+           Yii::$app->session->setFlash('success','You have entered the data correctly');
+       }
+
+       return $this->render('UserForm',['model'=>$model]);
+
+
+   }
+
+
+    public function actionHello()
     {
-        $model = new UserForm();
-
-        if($model->load(Yii::$app->request->post()) && $model->validate())
-        {
-
-            Yii::$app->session->setFlash('success','You have entered the data correctly');
-        }
-            return $this->render('userForm',['model'=>$model]);
+        $name = "Akson";
+        return $this->render('hello', ['name'=>$name]);
     }
+
 
 
 
